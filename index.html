@@ -65,7 +65,6 @@
             recognition.continuous = true;
             recognition.onresult = (event) => {
                 if(event.results.length > 0){
-                    $("#news").empty();
                     $("#news").append("<a>" + event.results[0][0].transcript + "</a>");
                 } else {
                     $.ajax({
