@@ -51,11 +51,18 @@
             recognition.lang = "ja-JP";
             recognition.continuous = true;
             recognition.interimResults = true;
+            var finalTranscript = "";
             recognition.onresult = (event) => {
-                if(event.results.length > 0){
-                    $("#speech").empty();
-                    $("#speech").append("<a>" + event.results[0][0].transcript + "</a>");
+                var interimTranscript = "";
+                for(var i = event.resultIndex; i < event.results.length; i++) {
+                    vsr transcript = event.results[i][0].transcript;
+                    if(event.results[i].isFinal) {
+                        finalTranscript += transcript;
+                    } else {
+                        interimTranscript = transcript;
+                    }
                 }
+                $("#speech").html("<a>" + finalTranscript + '<a style="color:#dddddd;">' + interimTranscript + "</a></a>");
             }
             recognition.onend = (event) => {
                 location.reload();
