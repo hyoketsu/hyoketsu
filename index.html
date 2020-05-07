@@ -61,12 +61,13 @@
             ];
             $.ajax({
                 url: "index.php?url=" + encodeURIComponent(url[Math.floor(Math.random() * url.length)]),
-                dataType: "text",
-                type: "GET",
-                success: function (text) {
-                    var xml = $.parseXML(text);
+                async: true,  
+                cache: false, 
+                type:'GET',
+                dataType:'xml',
+                success: function (xml) {
                     var title = [];
-                    console.log(text);
+                    console.log(xml);
                     $(xml).find("item").each(function () {
                         title.push($(this).find("title").text());
                     });
