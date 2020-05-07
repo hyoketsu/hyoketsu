@@ -16,7 +16,7 @@
             background-color: #00ff00;
         }
         div {
-            width: 1080px;
+            width: 640px;
             color: #ffffff;
             font-size: 40px;
             font-weight: bold;
@@ -50,7 +50,6 @@
                     text = event.results[0][0].transcript;
                     br++;
                 }
-                $("#speech").html("<a>" + text + "</a>");
                 $("#speech").html("<a>" + event.results[0][0].transcript.slice(br * text.length) + "</a>");
                 if(event.results[0].isFinal) location.reload();
             }
