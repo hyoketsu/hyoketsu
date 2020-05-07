@@ -43,6 +43,7 @@
             recognition.lang = "ja-JP";
             recognition.continuous = true;
             recognition.interimResults = true;
+            var text = "";
             recognition.onresult = (event) => {
                 if($("#speech").height() > 120) {
                     var text = event.results[0][0].transcript;
