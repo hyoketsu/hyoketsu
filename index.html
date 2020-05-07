@@ -61,8 +61,8 @@
             ];
             $.ajax({
                 url: "index.php?url=" + url[Math.floor(Math.random() * url.length)],
-                cache: false,
-                dataType: "xml",
+                type: "GET",
+                dataType: "text",
                 success: function (xml) {
                     var title = [];
                     $(xml).find("item").each(function () {
