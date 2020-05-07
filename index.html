@@ -16,7 +16,7 @@
             background-color: #00ff00;
         }
         div {
-            width: 1200px;
+            width: 1080px;
             color: #ffffff;
             font-size: 40px;
             font-weight: bold;
@@ -43,16 +43,15 @@
             recognition.lang = "ja-JP";
             recognition.continuous = true;
             recognition.interimResults = true;
-            var br = 1;
             var text = "";
+            var br = 0;
             recognition.onresult = (event) => {
-                if($("#speech").height() > 120 || br > 1) {
-                    $("#speech").html("<a>" + event.results[0][0].transcript.slice(br * text.length) + "</a>");
-                } else {
-                    if(br > 1) br++;
+                if($("#speech").height() > 120) {
                     text = event.results[0][0].transcript;
-                    $("#speech").html("<a>" + text + "</a>");
+                    br++;
                 }
+                $("#speech").html("<a>" + text + "</a>");
+                $("#speech").html("<a>" + event.results[0][0].transcript.slice(br * text.length) + "</a>");
                 if(event.results[0].isFinal) location.reload();
             }
             recognition.onend = (event) => {
