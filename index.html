@@ -53,6 +53,8 @@
             recognition.interimResults = true;
             recognition.onresult = (event) => {
                 $("#speech").html("<a>" + event.results[event.results.length - 1][0].transcript + "</a>");
+                console.log(event);
+                console.log(event.results);
             }
             recognition.onend = (event) => {
                 location.reload();
