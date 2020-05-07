@@ -50,6 +50,9 @@
                 }
                 if(event.results[0].isFinal) location.reload();
             }
+            recognition.onend = (event) => {
+                location.reload();
+            }
             recognition.start();
         });
     </script>
