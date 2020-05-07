@@ -64,6 +64,7 @@
                 dataType: "xml",
                 success: function (xml) {
                     var title = [];
+                    console.log(xml);
                     $(xml).find("item").each(function () {
                         title.push($(this).find("title").text());
                     });
