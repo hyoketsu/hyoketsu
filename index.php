@@ -1,2 +1,4 @@
 <?php
-    if(isset($_GET["url"])) echo file_get_contents($_GET["url"]);
+    $xml = file_get_contents($_GET["url"]);
+    header("Content-type: application/xml; charset=UTF-8");
+    print $xml;
