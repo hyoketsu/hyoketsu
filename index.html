@@ -18,27 +18,10 @@
         div {
             color: #ffffff;
             font-size: 40px;
-            font-family: "ヒラギノ角ゴ ProN W3";
+            font-family: "ヒラギノ角ゴ ProN W6";
             -webkit-text-stroke: 1px #000000,
             text-stroke: 1px #000000,
-        }
-        @keyframes animation {
-            0% {
-                transform: translateX(2048px);
-                opacity: 1;
-            }
-            25% {
-            transform: translateX(0px);
-                opacity: 1;
-            }
-            75% {
-                transform: translateX(0px);
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(-2048px);
-                opacity: 1;
-            }
+            transform: rotate(180deg),
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -57,7 +40,6 @@
             recognition.continuous = true;
             recognition.interimResults = true;
             recognition.onresult = (event) => {
-                $("style").append("div {opacity: 0; animation: animation " + event.results[0][0].transcript.length / 2 + "s 1;}");
                 $("#speech").html("<a>" + event.results[0][0].transcript + "</a>");
                 if(event.results[0].isFinal) location.reload();
             }
