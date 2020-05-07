@@ -42,13 +42,13 @@
             recognition.lang = "ja-JP";
             recognition.continuous = true;
             recognition.interimResults = true;
-            var br = false;
+            var br = 0;
             var text = "";
             recognition.onresult = (event) => {
-                if($("#speech").height() > 60 || br) {
-                    br = true;
-                    $("#speech").html("<a>" + event.results[0][0].transcript.slice(text.length - event.results[0][0].transcript.length) + "</a>");
+                if($("#speech").height() > 60 || br > 0) {
+                    $("#speech").html("<a>" + event.results[0][0].transcript.slice(br * text.length - event.results[0][0].transcript.length) + "</a>");
                 } else {
+                    if(br > 0) br++;
                     text = event.results[0][0].transcript;
                     $("#speech").html("<a>" + text + "</a>");
                 }
