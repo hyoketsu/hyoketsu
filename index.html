@@ -45,7 +45,7 @@
             recognition.interimResults = true;
             var text = "";
             recognition.onresult = (event) => {
-                if($("#speech").height() > 120) {
+                if($("#speech").height() > 144) {
                     text = event.results[0][0].transcript;
                 }
                 $("#speech").html("<a>" + event.results[0][0].transcript.slice(text.length) + "</a>");
