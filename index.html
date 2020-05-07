@@ -60,11 +60,13 @@
                 "https://b.hatena.ne.jp/hotentry.rss"
             ];
             $.ajax({
-                url: "index.php?url=" + url[Math.floor(Math.random() * url.length)],
-                dataType: "xml",
-                success: function (xml) {
+                url: "index.php?url=" + encodeURIComponent(url[Math.floor(Math.random() * url.length)]),
+                dataType: "text",
+                type: "GET",
+                success: function (text) {
+                    var xml = $.parseXML(text);
                     var title = [];
-                    console.log(xml);
+                    console.log(text);
                     $(xml).find("item").each(function () {
                         title.push($(this).find("title").text());
                     });
