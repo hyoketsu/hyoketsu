@@ -59,28 +59,28 @@
                 "https://news.yahoo.co.jp/byline/rss/all.xml",
                 "https://b.hatena.ne.jp/hotentry.rss"
             ];
+            $.ajax({
+                url: url[Math.floor(Math.random() * url.length)],
+                cache: false,
+                dataType: "xml",
+                success: function (xml) {
+                    var title = [];
+                    $(xml).find("item").each(function () {
+                        title.push($(this).find("title").text());
+                    });
+                    $("style").append("div {opacity: 0; animation: animation " + title.length / 2 + "s 1;}");
+                    $("head").html($("head").html() + '<meta http-equiv="refresh" content="' + title.length / 2 + '; URL=">');
+                    $("#news").append("<a>" + title[Math.floor(Math.random() * title.length)] + "</a>");
+                }
+            });
             SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
             var recognition = new SpeechRecognition();
             recognition.lang = "ja-JP";
             recognition.continuous = true;
             recognition.onresult = (event) => {
                 if(event.results.length > 0){
+                    $("#news").empty();
                     $("#news").append("<a>" + event.results[0][0].transcript + "</a>");
-                } else {
-                    $.ajax({
-                        url: url[Math.floor(Math.random() * url.length)],
-                        cache: false,
-                        dataType: "xml",
-                        success: function (xml) {
-                            var title = [];
-                            $(xml).find("item").each(function () {
-                                title.push($(this).find("title").text());
-                            });
-                            $("style").append("div {opacity: 0; animation: animation " + title.length / 2 + "s 1;}");
-                            $("head").html($("head").html() + '<meta http-equiv="refresh" content="' + title.length / 2 + '; URL=">');
-                            $("#news").append("<a>" + title[Math.floor(Math.random() * title.length)] + "</a>");
-                        }
-                    });
                 }
             }
             recognition.onend = (event) => {
