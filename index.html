@@ -54,15 +54,7 @@
             var finalTranscript = "";
             recognition.onresult = (event) => {
                 var interimTranscript = "";
-                for(var i = event.resultIndex; i < event.results.length; i++) {
-                    var transcript = event.results[i][0].transcript;
-                    if(event.results[i].isFinal) {
-                        finalTranscript += transcript;
-                    } else {
-                        interimTranscript = transcript;
-                    }
-                }
-                $("#speech").html("<a>" + finalTranscript + '<a style="color:#dddddd;">' + interimTranscript + "</a></a>");
+                $("#speech").html("<a>" + event.results[event.resultIndex][0].transcript + "</a>");
             }
             recognition.onend = (event) => {
                 location.reload();
