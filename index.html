@@ -50,6 +50,7 @@
             var recognition = new SpeechRecognition();
             recognition.lang = "ja-JP";
             recognition.continuous = true;
+            recognition.interimResults = true;
             recognition.onresult = (event) => {
                 if(event.results.length > 0){
                     $("#speech").empty();
