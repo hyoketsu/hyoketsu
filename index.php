@@ -12,7 +12,7 @@
         "https://news.yahoo.co.jp/byline/rss/all.xml",
         "https://b.hatena.ne.jp/hotentry.rss"
     ];
-    $xml = file_get_contents($url[floor(rand() * count($url))]);
+    $xml = file_get_contents("https://b.hatena.ne.jp/hotentry.rss");
     header("Content-type: application/xml; charset=UTF-8");
     print $xml;
 ?>
