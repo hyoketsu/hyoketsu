@@ -63,6 +63,7 @@
                 url: url[Math.floor(Math.random() * url.length)],
                 cache: false,
                 dataType: "xml",
+                xhrFields: withCredentials: true
                 success: function (xml) {
                     var title = [];
                     $(xml).find("item").each(function () {
