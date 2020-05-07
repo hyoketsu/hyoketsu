@@ -43,7 +43,7 @@
             recognition.continuous = true;
             recognition.interimResults = true;
             recognition.onresult = (event) => {
-                if($("#speech a").width() < $("#speech").width()) {
+                if($("#speech a").outerWidth(true) < $("#speech").width()) {
                     $("#speech").html("<a>" + event.results[0][0].transcript + "</a>");
                 } else {
                     $("#speech").html("<a>" + event.results[0][0].transcript.slice($("#speech").text().length - event.results[0][0].transcript.length) + "</a>");
