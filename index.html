@@ -44,35 +44,36 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
-    <?php
-        $url = [
-            "https://headlines.yahoo.co.jp/rss/all-dom.xml",
-            "https://headlines.yahoo.co.jp/rss/all-c_int.xml",
-            "https://headlines.yahoo.co.jp/rss/all-bus.xml",
-            "https://headlines.yahoo.co.jp/rss/all-c_ent.xml",
-            "https://headlines.yahoo.co.jp/rss/all-c_spo.xml",
-            "https://headlines.yahoo.co.jp/rss/all-c_sci.xml",
-            "https://headlines.yahoo.co.jp/rss/all-c_life.xml",
-            "https://headlines.yahoo.co.jp/rss/all-loc.xml",
-            "https://news.yahoo.co.jp/polls/rss.xml",
-            "https://news.yahoo.co.jp/byline/rss/all.xml",
-            "https://b.hatena.ne.jp/hotentry.rss"
-        ];
-        $xml = file_get_contents($url[Math.floor(Math.random() * url.length)]);
-        header("Content-type: application/xml; charset=UTF-8");
-    ?>
     <script type="text/javascript">
         $(function () {
             $.ajax({
-                    var xml = $.parseXML(<?php echo $xml; ?>);
-                    var title = [];
-                    console.log(text);
-                    $(xml).find("item").each(function () {
-                        title.push($(this).find("title").text());
-                    });
-                    $("style").append("div {opacity: 0; animation: animation " + title.length / 2 + "s 1;}");
-                    $("head").html($("head").html() + '<meta http-equiv="refresh" content="' + title.length / 2 + '; URL=">');
-                    $("#news").append("<a>" + title[Math.floor(Math.random() * title.length)] + "</a>");
+                var text = <?php
+                    $url = [
+                        "https://headlines.yahoo.co.jp/rss/all-dom.xml",
+                        "https://headlines.yahoo.co.jp/rss/all-c_int.xml",
+                        "https://headlines.yahoo.co.jp/rss/all-bus.xml",
+                        "https://headlines.yahoo.co.jp/rss/all-c_ent.xml",
+                        "https://headlines.yahoo.co.jp/rss/all-c_spo.xml",
+                        "https://headlines.yahoo.co.jp/rss/all-c_sci.xml",
+                        "https://headlines.yahoo.co.jp/rss/all-c_life.xml",
+                        "https://headlines.yahoo.co.jp/rss/all-loc.xml",
+                        "https://news.yahoo.co.jp/polls/rss.xml",
+                        "https://news.yahoo.co.jp/byline/rss/all.xml",
+                        "https://b.hatena.ne.jp/hotentry.rss"
+                    ];
+                    $xml = file_get_contents($url[Math.floor(Math.random() * url.length)]);
+                    header("Content-type: application/xml; charset=UTF-8");
+                    echo $xml;
+                ?>;
+                var xml = $.parseXML(text);
+                var title = [];
+                console.log(text);
+                $(xml).find("item").each(function () {
+                    title.push($(this).find("title").text());
+                });
+                $("style").append("div {opacity: 0; animation: animation " + title.length / 2 + "s 1;}");
+                $("head").html($("head").html() + '<meta http-equiv="refresh" content="' + title.length / 2 + '; URL=">');
+                $("#news").append("<a>" + title[Math.floor(Math.random() * title.length)] + "</a>");
             });
             SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
             var recognition = new SpeechRecognition();
