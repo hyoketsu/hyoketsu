@@ -63,7 +63,9 @@
                 url: "index.php?url=" + url[Math.floor(Math.random() * url.length)],
                 type: "GET",
                 dataType: "text",
-                success: function (xml) {
+                success: function (text) {
+                    var parser = new DOMParser();
+                    var xml = parser.parseFromString(text, "text/xml");
                     var title = [];
                     $(xml).find("item").each(function () {
                         title.push($(this).find("title").text());
