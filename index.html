@@ -16,7 +16,7 @@
             background-color: #00ff00;
         }
         div {
-            width: 1080px;
+            width: 992px;
             color: #ffffff;
             font-size: 40px;
             font-weight: bold;
@@ -46,8 +46,8 @@
             var br = 1;
             var text = "";
             recognition.onresult = (event) => {
-                if($("#speech").height() > 60 || br > 1) {
-                    $("#speech").html("<a>" + event.results[0][0].transcript.slice(event.results[0][0].transcript.length - br * text.length) + "</a>");
+                if($("#speech").height() > 120 || br > 1) {
+                    $("#speech").html("<a>" + event.results[0][0].transcript.slice(-text.length) + "</a>");
                 } else {
                     if(br > 1) br++;
                     text = event.results[0][0].transcript;
