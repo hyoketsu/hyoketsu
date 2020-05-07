@@ -55,7 +55,7 @@
             recognition.onresult = (event) => {
                 var interimTranscript = "";
                 for(var i = event.resultIndex; i < event.results.length; i++) {
-                    vsr transcript = event.results[i][0].transcript;
+                    var transcript = event.results[i][0].transcript;
                     if(event.results[i].isFinal) {
                         finalTranscript += transcript;
                     } else {
