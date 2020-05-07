@@ -46,9 +46,9 @@
             recognition.onresult = (event) => {
                 if($("#speech").height() > 60 || br) {
                     var br = true;
-                    $("#speech").html("<a>" + event.results[0][0].transcript.slice(text.length - event.results[0][0].transcript.length) + "</a>");
+                    $("#speech").html("<a>" + event.results[0][0].transcript.slice(text.length - event.results[0][0].transcript.toString().length) + "</a>");
                 } else {
-                    var text = event.results[0][0].transcript;
+                    var text = event.results[0][0].transcript.toString();
                     $("#speech").html("<a>" + text + "</a>");
                 }
                 if(event.results[0].isFinal) location.reload();
