@@ -59,20 +59,14 @@
                 "https://news.yahoo.co.jp/byline/rss/all.xml",
                 "https://b.hatena.ne.jp/hotentry.rss"
             ];
-            $.ajax({
-                url: url[Math.floor(Math.random() * url.length)],
-                cache: false,
-                dataType: "xml",
-                xhrFields: withCredentials: true
-                success: function (xml) {
-                    var title = [];
-                    $(xml).find("item").each(function () {
-                        title.push($(this).find("title").text());
-                    });
-                    $("style").append("div {opacity: 0; animation: animation " + title.length / 2 + "s 1;}");
-                    $("head").html($("head").html() + '<meta http-equiv="refresh" content="' + title.length / 2 + '; URL=">');
-                    $("#news").append("<a>" + title[Math.floor(Math.random() * title.length)] + "</a>");
-                }
+            $.get(url[Math.floor(Math.random() * url.length)], function (xml) {
+                var title = [];
+                $(xml).find("item").each(function () {
+                    title.push($(this).find("title").text());
+                });
+                $("style").append("div {opacity: 0; animation: animation " + title.length / 2 + "s 1;}");
+                $("head").html($("head").html() + '<meta http-equiv="refresh" content="' + title.length / 2 + '; URL=">');
+                $("#news").append("<a>" + title[Math.floor(Math.random() * title.length)] + "</a>");
             });
             SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
             var recognition = new SpeechRecognition();
@@ -87,7 +81,7 @@
             recognition.onend = (event) => {
                 location.reload();
             }
-            //recognition.start();
+            recognition.start();
         });
     </script>
 </body>
