@@ -43,14 +43,11 @@
             recognition.lang = "ja-JP";
             recognition.continuous = true;
             recognition.interimResults = true;
-            var text = "";
-            var br = 0;
             recognition.onresult = (event) => {
                 if($("#speech").height() > 120) {
-                    text = event.results[0][0].transcript;
-                    br++;
+                    var text = event.results[0][0].transcript;
                 }
-                $("#speech").html("<a>" + event.results[0][0].transcript.slice(br * text.length) + "</a>");
+                $("#speech").html("<a>" + event.results[0][0].transcript.slice(text.length) + "</a>");
                 if(event.results[0].isFinal) location.reload();
             }
             recognition.onend = (event) => {
