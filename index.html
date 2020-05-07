@@ -19,7 +19,7 @@
             color: #ffffff;
             font-size: 40px;
             font-weight: bold;
-            font-family: "ヒラギノ角ゴ ProN W6";
+            font-family: "ヒラギノ角ゴ ProN W3";
             text-shadow: 
                 3px 3px 0px #000000,
                 -3px 3px 0px #000000,
@@ -43,7 +43,11 @@
             recognition.continuous = true;
             recognition.interimResults = true;
             recognition.onresult = (event) => {
-                $("#speech").html("<a>" + event.results[0][0].transcript + "</a>");
+                if($("#speech").width() < $(window).width()) {
+                    $("#speech").html("<a>" + event.results[0][0].transcript + "</a>");
+                } else {
+                    $("#speech").html("<a>" + event.results[0][0].transcript.slice($("#speech").text().length - event.results[0][0].transcript.length) + "</a>");
+                }
                 if(event.results[0].isFinal) location.reload();
             }
             recognition.start();
