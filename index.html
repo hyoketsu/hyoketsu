@@ -46,7 +46,7 @@
             var text = "";
             recognition.onresult = (event) => {
                 if($("#speech").height() > 120) {
-                    var text = event.results[0][0].transcript;
+                    text = event.results[0][0].transcript;
                 }
                 $("#speech").html("<a>" + event.results[0][0].transcript.slice(text.length) + "</a>");
                 if(event.results[0].isFinal) location.reload();
