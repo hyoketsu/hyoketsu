@@ -1,0 +1,52 @@
+<div class="container p-0 pb-3 border-bottom">
+    <div class="row no-gutters">
+        <div class="col-sm d-flex">
+            <div class="singleselect d-inline-block">
+                <form class="form-inline">
+                    <select class="custom-select singleselect" id="form1:htmlYobi"></select>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<table id="form1:calendarList" class="linkNormal detailTr listTable" border="1" cellpadding="2" cellspacing="0">
+    ...
+    履修関連＞学生時間割表
+    ...
+</table>
+-->
+<script type="text/javascript">
+    let calendarList = document.getElementById("form1:calendarList");
+    let htmlYobi = document.getElementById("form1:htmlYobi");
+    calendarList.border = "0";
+    calendarList.classList.add("table");
+    function openSyllabus(nendo, jugyoCode) {
+        window.location.href = document.querySelector("[title*='" + jugyoCode + "']");
+    }
+    for (let row of calendarList.tHead.rows) {
+        for (let cell of row.cells) {
+            let option = document.createElement("option");
+            option.text = cell.innerText;
+            htmlYobi.appendChild(option);
+        }
+    }
+    htmlYobi.onchange = function () {
+        for (let row of calendarList.querySelectorAll("[id*='label'")) {
+            if (htmlYobi.selectedIndex == 0 || ~row.id.indexOf("label000") || ~row.id.indexOf("label" + ("000" + htmlYobi.selectedIndex).slice(-3))) {
+                row.parentNode.style.display = "";
+            } else {
+                row.parentNode.style.display = "none";
+            }
+        }
+        for (let row of calendarList.querySelectorAll("[id*='rowVal'")) {
+            if (htmlYobi.selectedIndex == 0 || ~row.id.indexOf("rowVal00") || ~row.id.indexOf("rowVal" + ("00" + htmlYobi.selectedIndex).slice(-2))) {
+                row.parentNode.style.display = "";
+            } else {
+                row.parentNode.style.display = "none";
+            }
+        }
+    }
+    htmlYobi.options[new Date().getDay()].selected = true;
+    htmlYobi.onchange();
+</script>
